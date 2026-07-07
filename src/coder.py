@@ -3,10 +3,12 @@ from src.config import call_llm
 from src.file_writer import write_file
 
 
-def write_code(project_name: str, tasks: list[dict]) -> list[str]:
+def write_code(project_name: str, tasks: list[dict], status_callback=None) -> list[str]:
     system_prompt = "You are a senior software engineer. Write clean, complete, working code."
     written = []
     for task in tasks:
+        if status_callback:
+            status_callback(f"Writing {task['filename']}...")
         prompt = f"""Write the FULL code for the file "{task["filename"]}" in the project "{project_name}".
 
 Description of what this file should do:
