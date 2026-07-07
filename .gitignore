@@ -1,0 +1,5 @@
+.env
+__pycache__/
+generated_projects/*
+!generated_projects/.gitkeep
+*.pyc
