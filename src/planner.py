@@ -4,18 +4,30 @@ from src.config import call_llm
 
 
 def create_plan(user_prompt: str) -> dict:
-    system_prompt = "You are a software planner. Respond with STRICT JSON only."
+    system_prompt = (
+        "You are a senior software planner. You design practical, complete projects. "
+        "For web apps, prefer simple HTML/CSS/JS unless a framework is explicitly requested. "
+        "Respond with STRICT JSON only — no markdown, no code fences, no explanation."
+    )
     prompt = f"""Given this app description:
 {user_prompt}
 
-Respond with STRICT JSON only, no markdown, no code fences:
+Design a complete project plan. Choose a practical tech stack (for simple web apps use HTML + CSS + JavaScript).
+
+Respond with EXACTLY this JSON structure, no extra fields:
 {{
   "project_name": "short_snake_case_name",
-  "tech_stack": ["list", "of", "technologies"],
+  "tech_stack": ["html", "css", "javascript"],
   "features": ["list", "of", "key", "features"],
-  "file_list": ["list", "of", "files", "needed"]
+  "file_list": ["index.html", "style.css", "script.js"],
+  "design_style": "modern" or "minimal" or "dark"
 }}
-Base the file_list on what makes sense for the requested app type."""
+
+Rules for file_list:
+- For a web app with UI: ["index.html", "style.css", "script.js"]
+- For a CLI tool: ["main.py"] or ["main.js"]
+- For an API: ["server.py", "requirements.txt"] or ["server.js", "package.json"]
+"""
     raw = call_llm(prompt, system_prompt)
     raw = raw.strip()
     raw = re.sub(r"^```(?:json)?\s*", "", raw)

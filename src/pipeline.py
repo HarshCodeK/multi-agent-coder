@@ -14,7 +14,7 @@ def run_pipeline(user_prompt: str, status_callback=None) -> dict:
 
     if status_callback:
         status_callback("Writing code...")
-    files_written = write_code(plan["project_name"], tasks, status_callback)
+    files_written = write_code(plan["project_name"], tasks, plan, status_callback)
 
     return {
         "project_name": plan["project_name"],
