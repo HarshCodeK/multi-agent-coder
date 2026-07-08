@@ -1,5 +1,7 @@
 # Multi-Agent Coder
 
+![Project Screenshot](../image.png)
+
 A tool that takes a plain-English app description and uses 3 AI agents working in sequence to generate a complete, working project. Type what you want, and the agents plan the architecture, break it into file-level tasks, and write every line of code.
 
 ## Why 3 separate agents?
