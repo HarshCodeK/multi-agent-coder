@@ -1,3 +1,5 @@
+> **Archived 2026-09.** A learning slice: practice in multi-agent orchestration that emits file trees, built in a single session. Superseded by [regent](https://github.com/HarshCodeK/regent) - the AI control plane, where the same pipeline idea now has tests, CI, an append-only ledger and measured numbers. Kept for history, not presented as portfolio work.
+
 # Multi-Agent Coder
 
 A production-style multi-agent code generator: three Groq LLaMA 3.3 70B agents — Planner, Architect, Coder — turn a plain-English app description into a complete, downloadable project on disk.
